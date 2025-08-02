@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Extension Security Scanner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>Extension Security Scanner</h1>
+            </div>
+            <p class="subtitle">Analyze browser extensions for potential security risks and malicious behavior</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <!-- Disclaimer Card -->
+                <div class="disclaimer-card">
+                    <div class="disclaimer-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="disclaimer-content">
+                        <h3>Supported File Types</h3>
+                        <p>Only <span class="file-type">.crx</span> and <span class="file-type">.zip</span> files containing browser extensions are supported for security analysis.</p>
+                    </div>
+                </div>
+
+                <!-- Upload Container -->
+                <div class="upload-container" id="uploadContainer">
+                    <!-- Upload Area -->
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h3>Drop your extension file here</h3>
+                        <p>or <span class="browse-text">click to browse</span></p>
+                        <div class="supported-formats">
+                            <span class="format-badge">.crx files</span>
+                            <span class="format-badge">.zip files</span>
+                        </div>
+                        <input type="file" id="fileInput" accept=".crx,.zip" style="display: none;">
+                    </div>
+
+                    <!-- Upload Progress -->
+                    <div class="upload-progress" id="uploadProgress" style="display: none;">
+                        <div class="upload-icon">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                        <h3>Analyzing Extension...</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text" id="progressText">Uploading... 0%</p>
+                    </div>
+
+                    <!-- Upload Result -->
+                    <div class="upload-result" id="uploadResult" style="display: none;">
+                        <div class="result-icon" id="resultIcon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 id="resultTitle">Analysis Complete!</h3>
+                        <p id="resultMessage">Your extension has been successfully analyzed.</p>
+                        <button class="new-scan-btn" id="newScanBtn">
+                            <i class="fas fa-plus"></i>
+                            Start New Scan
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features-section">
+                <h2>Security Analysis Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h3>Malware Detection</h3>
+                        <p>Scans for known malicious patterns, suspicious code injections, and potentially harmful behaviors in extension files.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h3>Privacy Analysis</h3>
+                        <p>Examines permissions, data collection practices, and identifies potential privacy violations or excessive access requests.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Code Review</h3>
+                        <p>Analyzes JavaScript code for obfuscation, suspicious functions, and potentially dangerous API usage patterns.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3>Compliance Check</h3>
+                        <p>Verifies extension compliance with browser security policies and identifies potential policy violations.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <div class="faq-header">
+                    <div class="faq-title-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h2 class="faq-gradient-title">FAQ</h2>
+                    <div class="faq-subtitle">Everything you need to know about our security scanner</div>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-icon">Q1</span>
+                            <span>What is this tool for?</span>
+                            <i class="fas fa-chevron-down faq-arrow"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>This tool scans browser extensions to detect potential security risks and malicious behavior.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-icon">Q2</span>
+                            <span>What file types are supported?</span>
+                            <i class="fas fa-chevron-down faq-arrow"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Only .crx and .zip files containing Chrome or Firefox extensions are supported.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-icon">Q3</span>
+                            <span>Does this tool send my files to any third-party services?</span>
+                            <i class="fas fa-chevron-down faq-arrow"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No, all analysis is performed locally or on our server without external sharing.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-icon">Q4</span>
+                            <span>Can this tool detect all malicious extensions?</span>
+                            <i class="fas fa-chevron-down faq-arrow"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>It flags known risky patterns, but manual review is still recommended for full assurance.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Social Links Section -->
+        <section class="social-section">
+            <div class="social-container">
+                <div class="social-icons">
+                    <a href="https://github.com/pratikshirode03" target="_blank" class="social-icon github">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/pratikshirode2405" target="_blank" class="social-icon linkedin">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/shirode_pratik12/" target="_blank" class="social-icon instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="mailto:shirodepratik444@gmail.com" class="social-icon email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Black Footer -->
+    <footer class="black-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Copyright Reserved Pratik Shirode</p>
+        </div>
+    </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
